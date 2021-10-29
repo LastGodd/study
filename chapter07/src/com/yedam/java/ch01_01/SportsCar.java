@@ -1,6 +1,6 @@
 package com.yedam.java.ch01_01;
 
-public class SportsCar extends Car {
+public class SportsCar extends Car{
 
 	@Override
 	void speedUp() {
@@ -8,9 +8,9 @@ public class SportsCar extends Car {
 		super.speedUp();
 	}
 	
-//	@Override
-//	void stop() {
-//		System.out.println("스포츠카를 멈춤");
-//		speed = 0;
-//	}
+	void stop() {
+		System.out.println("스포츠카를 멈춤");
+		speed = 0;
+	}
+	
 }

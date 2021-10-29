@@ -1,6 +1,7 @@
 package com.yedam.java.ch02_01;
 
 public class Main {
+
 	public static void main(String[] args) {
 		B b = new B();
 		C c = new C();
@@ -29,7 +30,10 @@ public class Main {
 		parent.method2();
 		//parent.method3();
 		System.out.println();
+			
 		
 		
 	}
+	
+
 }

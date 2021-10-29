@@ -1,5 +1,5 @@
 package com.yedam.java.ch01_01;
 
-public class Member {
-	
+public final class Member {
+
 }

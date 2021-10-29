@@ -1,25 +1,24 @@
 package com.yedam.java.ch02_02;
 
 public class KumhoTire extends Tire {
-	// 필드
+	//필드
 	
-	// 생성자
+	//생성자
 	public KumhoTire(String location, int maxRotation) {
 		super(location, maxRotation);
 	}
 	
-	// 메소드
+	//메소드
 	@Override
 	public boolean roll() {
-		accumlatedRotaion++;
-		if(accumlatedRotaion < maxRotation) {
-			System.out.println(location + "KumhoTire 수명 : " + (maxRotation - accumlatedRotaion) + "회" );
+		accmulatedRotation++;
+		if(accmulatedRotation < maxRotation) {
+			System.out.println(location + "KumhoTire 수명 : " 
+					+ (maxRotation - accmulatedRotation) +  "회");
 			return true;
-		} else {
-			System.out.println("*** " + location + "KumhoTire 펑크 ***");
+		}else {
+			System.out.println("*** " + location +" KumhoTire 펑크 ***");
 			return false;
 		}
 	}
-	
-	
 }

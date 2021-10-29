@@ -1,6 +1,7 @@
 package com.yedam.java.ch01_01;
 
 public class Main {
+
 	public static void main(String[] args) {
 		DmbPhone dmb = new DmbPhone("자바폰", "검정", 10);
 		
@@ -25,7 +26,7 @@ public class Main {
 		System.out.println("name : " + student.name);
 		System.out.println("ssn : " + student.ssn);
 		System.out.println("studentNo : " + student.studentNo);
-		
+		System.out.println();
 		int r = 10;
 		Calculator cal = new Calculator();
 		System.out.println("원면적 : " + cal.areaCircle(r));
@@ -45,7 +46,6 @@ public class Main {
 		sa.land();
 		System.out.println();
 		
-		
-		
 	}
+
 }

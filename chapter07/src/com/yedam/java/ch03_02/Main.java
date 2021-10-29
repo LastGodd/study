@@ -1,6 +1,7 @@
 package com.yedam.java.ch03_02;
 
 public class Main {
+
 	public static void main(String[] args) {
 		Dog dog = new Dog();
 		Cat cat = new Cat();
@@ -19,10 +20,11 @@ public class Main {
 		animalSound(new Cat());
 		animalSound(new Dog());
 		
+			
 	}
 	
-	public static void animalSound(Animal ani) {
-		ani.sound();
+	public static void animalSound(Animal animal) {
+		animal.sound();
 	}
-	
+
 }

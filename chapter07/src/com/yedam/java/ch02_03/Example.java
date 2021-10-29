@@ -1,6 +1,7 @@
 package com.yedam.java.ch02_03;
 
 public class Example {
+
 	public static void main(String[] args) {
 		Driver driver = new Driver();
 		
@@ -10,10 +11,6 @@ public class Example {
 		driver.drive(bus);
 		driver.drive(taxi);
 		
-		
-		
-		
-		
-		
 	}
+
 }
