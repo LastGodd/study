@@ -1,2 +1,46 @@
 # study
 Study
+
+- User Table -
+CREATE TABLE boarduser(
+    uno NUMBER(4) PRIMARY KEY,
+    u_id VARCHAR2(20) UNIQUE NOT NULL,
+    u_pw VARCHAR2(20) NOT NULL,
+    u_nm VARCHAR2(14),
+    hiredate DATE DEFAULT TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+);
+
+- Sequence -
+CREATE SEQUENCE NO_SEQ
+  START WITH 1
+  INCREMENT BY 1
+  MAXVALUE 10000
+  MINVALUE 1
+  NOCYCLE;
+
+- Board Table -
+CREATE TABLE board (
+    bno NUMBER(4) PRIMARY KEY,
+    title VARCHAR2(30) NOT NULL,
+    content VARCHAR2(2000) NOT NULL,
+    uno NUMBER(4) NOT NULL,
+    FOREIGN KEY(uno) REFERENCES boarduser(uno) ON DELETE CASCADE
+);
+
+- Sequence -
+CREATE SEQUENCE BNO_SEQ
+  START WITH 1
+  INCREMENT BY 1
+  MAXVALUE 10000
+  MINVALUE 1
+  NOCYCLE;
+  
+- Comment Table -
+CREATE TABLE comments (
+    cno NUMBER(4) PRIMARY KEY,
+    content VARCHAR2(200) NOT NULL,
+    bno NUMBER(4) NOT NULL,
+    uno NUMBER(4) NOT NULL,
+    FOREIGN KEY(bno) REFERENCES board(bno) ON DELETE CASCADE,
+    FOREIGN KEY(uno) REFERENCES boarduser(uno) ON DELETE CASCADE
+);
