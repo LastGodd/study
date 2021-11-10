@@ -8,5 +8,5 @@ public interface UserDAO {
 	// 회원 탈퇴
 	public int deleteMember(UserVO param);
 	// 로그인
-	public UserVO login(UserVO param);
+	public UserVO login(String id, String pw);
 }

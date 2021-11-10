@@ -87,13 +87,13 @@ public class UserDAOImpl extends DAO implements UserDAO {
 
 	// 로그인
 	@Override
-	public UserVO login(UserVO param) {
+	public UserVO login(String id, String pw) {
 		UserVO user = null;
 		try {
 			connect();
-			String sql = "SELECT u_pw FROM boarduser WHERE u_id = ?";
+			String sql = "SELECT * FROM boarduser WHERE u_id = ?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, param.getUid());
+			pstmt.setString(1, id);
 
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
@@ -102,8 +102,8 @@ public class UserDAOImpl extends DAO implements UserDAO {
 				user.setUid(rs.getString("u_id"));
 				user.setUpw(rs.getString("u_pw"));
 				user.setUnm(rs.getString("u_nm"));
-				if (user.getUid().equals(param.getUid())) {
-					if (user.getUpw().equals(param.getUpw())) {
+				if (user.getUid().equals(id)) {
+					if (user.getUpw().equals(pw)) {
 						System.out.println("로그인 성공");
 					} else {
 						System.out.println("아이디 또는 비밀번호가 틀립니다.");

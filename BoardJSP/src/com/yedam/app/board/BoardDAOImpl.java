@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.yedam.app.common.DAO;
+import com.yedam.app.user.UserVO;
 
 public class BoardDAOImpl extends DAO implements BoardDAO {
 	// 싱글톤
@@ -19,15 +20,17 @@ public class BoardDAOImpl extends DAO implements BoardDAO {
 	
 	// 게시글 등록
 	@Override
-	public int boardInsert(BoardVO param) {
+	public int boardInsert(BoardVO param, UserVO user) {
 		int result = 0;
 		try {
 			connect();
 			String sql = "INSERT INTO board (bno, title, content, uno) VALUES(BNO_SEQ.NEXTVAL, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, param.getTitle());
-			pstmt.setString(2, param.getContent());
-			pstmt.setInt(3, param.getUno());
+			System.out.print("제목 입력 >>");
+			pstmt.setString(1, sc.next());
+			System.out.print("내용 입력>>");
+			pstmt.setString(2, sc.next());
+			pstmt.setInt(3, user.getUno());
 
 			result = pstmt.executeUpdate();
 			System.out.println(result + "건이 등록되었습니다.");
@@ -41,21 +44,25 @@ public class BoardDAOImpl extends DAO implements BoardDAO {
 
 	// 게시글 수정
 	@Override
-	public int boardUpdate(BoardVO param) {
+	public int boardUpdate(BoardVO param, UserVO user) {
 		int result = 0;
 		try {
 			connect();
 			String sql = "UPDATE board SET title = ?, content = ? WHERE bno = ? AND uno = ?";
-			pstmt = conn.prepareStatement(sql);
-			System.out.print("수정할 글 제목 >>");
-			pstmt.setString(1, sc.next());
-			System.out.print("수정할 내용>>");
-			pstmt.setString(2, sc.next());
-			pstmt.setInt(3, param.getBno());
-			pstmt.setInt(4, param.getUno());
-
-			result = pstmt.executeUpdate();
-			System.out.println(result + "건이 수정되었습니다.");
+			if(param.getUno() == user.getUno()) {
+				pstmt = conn.prepareStatement(sql);
+				System.out.print("수정할 글 제목 >>");
+				pstmt.setString(1, sc.next());
+				System.out.print("수정할 내용>>");
+				pstmt.setString(2, sc.next());
+				pstmt.setInt(3, param.getBno());
+				pstmt.setInt(4, param.getUno());
+				
+				result = pstmt.executeUpdate();
+				System.out.println(result + "건이 수정되었습니다.");
+			} else {
+				System.out.println("수정 권한이 없습니다.");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -66,17 +73,21 @@ public class BoardDAOImpl extends DAO implements BoardDAO {
 
 	// 게시글 삭제
 	@Override
-	public int boardDelete(BoardVO param) {
+	public int boardDelete(BoardVO param, UserVO user) {
 		int result = 0;
 		try {
 			connect();
 			String sql = "DELETE FROM board WHERE bno = ? AND uno = ?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, param.getBno());
-			pstmt.setInt(2, param.getUno());
-
-			result = pstmt.executeUpdate();
-			System.out.println(result + "건 삭제되었습니다.");
+			if(param.getUno() == user.getUno()) {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, param.getBno());
+				pstmt.setInt(2, param.getUno());
+				
+				result = pstmt.executeUpdate();
+				System.out.println(result + "건 삭제되었습니다.");
+			} else {
+				System.out.println("삭제 권한이 없습니다.");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
